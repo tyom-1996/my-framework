@@ -12,7 +12,7 @@ class sf_controller{
 
             if($url_array[0] == $GLOBALS['base_url']){
 
-                $this->use_controller("defaultController");
+                $this->use_controller(["defaultController"]);
 
             }else{
 
@@ -29,34 +29,42 @@ class sf_controller{
 
         }else{
 
-            $url       = $_SERVER['REDIRECT_URL'];
-            $url       = substr($url, 1);
+            $url       = substr($_SERVER['REDIRECT_URL'], 1);
             $base_url  = explode("/", base_url());
             $url_array = explode("/", $url);
 
 
             if(!empty($base_url[1])){
 
-                if($base_url[1]==$url_array[0]){
+                if($base_url[1] == $url_array[0]){
 
                     $info=[];
-                    for($i=1; $i<count($url_array); $i++){
+
+                    for($i=1; $i<count($url_array); $i++) {
                         array_push($info, $url_array[$i]);
                     }
 
                     $this->use_controller($info);
+
                 }else{
+
                     $info=[];
-                    for($i=0; $i<count($url_array); $i++){
+
+                    for($i=0; $i<count($url_array); $i++) {
                         array_push($info, $url_array[$i]);
                     }
+
                     $this->use_controller($info);
+
                 }
             }else{
+
                 $info=[];
-                for($i=0; $i<count($url_array); $i++){
+
+                for($i=0; $i<count($url_array); $i++) {
                     array_push($info, $url_array[$i]);
                 }
+
                 $this->use_controller($info);
             }
 

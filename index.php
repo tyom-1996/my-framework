@@ -2,9 +2,9 @@
 
 require 'vendor/autoload.php';
 
-$system_path = 'system';
+$system_path        = 'system';
 $application_folder = 'application';
-$view_folder = 'application/views';
+$view_folder        = 'application/views';
 
 define('BASEPATH', $system_path.'/');
 define('APPLICATION', $application_folder.'/');

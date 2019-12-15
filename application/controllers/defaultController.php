@@ -4,7 +4,7 @@ class defaultController {
 
     public function index()
     {
-        echo "hello i am ".get_class()." class";die;
+        echo "hello i am  def";
     }
 
     public function home()
