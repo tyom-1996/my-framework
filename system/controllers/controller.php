@@ -101,7 +101,7 @@ class sf_controller{
 
                 $method = $url_array[1];
 
-                if(method_exists($active_controller, $method)==true){
+                if(method_exists($active_controller, $method) == true){
 
                     call_user_func(array($active_controller,$method));
 
@@ -137,7 +137,6 @@ class sf_controller{
     public function redirect($url)
     {
         header('location:'.$url);
-
     }
 
 }
