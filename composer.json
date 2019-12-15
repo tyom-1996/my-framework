@@ -1,0 +1,16 @@
+{
+    "name": "user/custom_framevork",
+    "authors": [
+        {
+            "name": "hakobjanyanArtyom",
+            "email": "dark.artyom1@mail.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4" : {
+            "System\\" : "system",
+            "App\\" : "application"
+        }
+    }
+}
