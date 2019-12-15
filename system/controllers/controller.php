@@ -16,7 +16,7 @@ class sf_controller{
 
             }else{
 
-                $info=[];
+                $info = [];
 
                 for($i=0; $i<count($url_array); $i++){
                     array_push($info, $url_array[$i]);
@@ -38,7 +38,7 @@ class sf_controller{
 
                 if($base_url[1] == $url_array[0]){
 
-                    $info=[];
+                    $info = [];
 
                     for($i=1; $i<count($url_array); $i++) {
                         array_push($info, $url_array[$i]);
@@ -48,7 +48,7 @@ class sf_controller{
 
                 }else{
 
-                    $info=[];
+                    $info = [];
 
                     for($i=0; $i<count($url_array); $i++) {
                         array_push($info, $url_array[$i]);
@@ -59,7 +59,7 @@ class sf_controller{
                 }
             }else{
 
-                $info=[];
+                $info = [];
 
                 for($i=0; $i<count($url_array); $i++) {
                     array_push($info, $url_array[$i]);
@@ -82,26 +82,33 @@ class sf_controller{
             $controller_name   = $url_array[0];
             $active_controller = new $controller_name;
 
-
             if(empty($url_array[1])){
 
                 $method = "index";
 
-                if(method_exists($active_controller, $method)==true){
-                    call_user_func(array($active_controller,$method));
+                if(method_exists($active_controller, $method) == true){
+
+                    call_user_func(array($active_controller, $method));
                     exit();
+
                 }else{
-                    header('location:'.base_url_super().'404.php');
+
+                    $this->redirect(base_url_super().'404.php');
 
                 }
 
-            }else if(!empty($url_array[1])&&empty($url_array[2])){
+            } else if(!empty($url_array[1]) && empty($url_array[2])){
+
                 $method = $url_array[1];
+
                 if(method_exists($active_controller, $method)==true){
+
                     call_user_func(array($active_controller,$method));
-                }
-                else{
-                    header('location:'.base_url_super().'404.php');
+
+                } else{
+
+                    $this->redirect(base_url_super().'404.php');
+
                 }
 
             }else if(!empty($url_array[2])){
@@ -109,12 +116,9 @@ class sf_controller{
                 $method = $url_array[1];
                 $params = [];
 
-
-
                 for ($i=2; $i < count($url_array) ; $i++) {
                     array_push($params, $url_array[$i]);
                 }
-
 
                 if(method_exists($active_controller, $method) == true){
                     call_user_func_array(array($active_controller,$method), $params);
@@ -124,9 +128,18 @@ class sf_controller{
             }
 
         }else{
-            header('location:'.base_url_super().'404.php');
+
+            $this->redirect(base_url_super().'404.php');
 
         }
     }
+
+    public function redirect($url)
+    {
+        header('location:'.$url);
+
+    }
+
 }
+
 new sf_controller();

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8c86765-cbbb-477d-9624-aa62250fe90a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example-site.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/controllers/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/controllers/controller.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,16 +39,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/system/controllers/controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="234">
+              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example-site.php">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -103,6 +103,7 @@
       <find>404.php</find>
       <find>system</find>
       <find>BASEPATH</find>
+      <find>header</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,8 +124,8 @@
         <option value="$PROJECT_DIR$/system/artframework.php" />
         <option value="$PROJECT_DIR$/application/controllers/defaultController.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/system/controllers/controller.php" />
         <option value="$PROJECT_DIR$/example-site.php" />
+        <option value="$PROJECT_DIR$/system/controllers/controller.php" />
       </list>
     </option>
   </component>
@@ -195,12 +196,12 @@
       <option name="presentableId" value="Default" />
       <updated>1576430072427</updated>
       <workItem from="1576430074259" duration="8289000" />
-      <workItem from="1576438845694" duration="457000" />
+      <workItem from="1576438845694" duration="786000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8746000" />
+    <option name="totallyTimeSpent" value="9075000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -291,17 +292,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/controllers/controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example-site.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="75" selection-start-column="75" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/controllers/controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
         </state>
       </provider>
     </entry>
