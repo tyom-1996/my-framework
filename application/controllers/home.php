@@ -1,15 +1,19 @@
 <?php
 
-class Home
+use System\controllers\core;
+
+class Home extends core
 {
     public function index()
     {
-        echo "i am home controller";
+
+      $this->load_page('home',array('title' => "home",'name' => "tyom"));
+
     }
 
-
-   
-
-
-
+    public function test($a, $b)
+    {
+        print_r($a);
+        print_r($b);
+    }
 }

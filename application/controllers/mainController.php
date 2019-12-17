@@ -1,6 +1,6 @@
 <?php
 
-class defaultController {
+class mainController {
 
     public function index()
     {

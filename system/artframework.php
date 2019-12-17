@@ -21,4 +21,4 @@ function base_url_super()
     return "http://".base_url();
 }
 
-require_once  BASEPATH.'controllers/controller.php';
+require_once  BASEPATH.'controllers/route.php';
