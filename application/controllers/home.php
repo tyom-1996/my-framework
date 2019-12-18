@@ -8,10 +8,8 @@ class Home extends core
     public function index()
     {
         $User = $this->load_model("User");
-
-//        $User->test();
         $User->all();
-        $User->get(['id' => 5]);
+        var_dump($User->get(['id' => 1]));
 
 //      $this->load_page('home',array('title' => "home",'name' => "tyom"));
     }

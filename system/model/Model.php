@@ -11,27 +11,34 @@ class Model extends Connection {
 
     public function __construct(){
         $this->db = Connection::getInstance()->getConnection();
-        $this->tableName = lcfirst(get_class($this));
-        var_dump($this->tableName);
+        $this->tableName = lcfirst(get_class($this)).'s';
     }
 
     public function all()
     {
-        $tableName = lcfirst(get_class($this));
         try {
-            $sql    = "SELECT * FROM ".$tableName.'s';
-            $data   = $this->db->query($sql)->fetchAll();
+            $sql    = "SELECT * FROM ".$this->tableName;
+            return  $this->db->query($sql)->fetchAll();
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    public function get($where)
+    public function get($where = [])
     {
-        $tableName = lcfirst(get_class($this));
         try {
-            $sql    = "SELECT * FROM ".$tableName.'s';
+            $where_str = '';
+            if (!empty($where)) {
+                $where_str .= "WHERE";
+                foreach ($where as $key => $val ) {
+                    $where_str .= " $key = $val ";
+                }
+            }
+            $sql    = "SELECT * FROM {$this->tableName} ".$where_str;
+
             $data   = $this->db->query($sql)->fetchAll();
+            return $data;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -39,10 +46,10 @@ class Model extends Connection {
 
     public function query($sql)
     {
-        $tableName = lcfirst(get_class($this));
+
         try {
-            $sql    = "SELECT * FROM ".$tableName.'s';
-            $data   = $this->db->query($sql)->fetchAll();
+            $sql    = "SELECT * FROM ".$this->tableName;
+            return $this->db->query($sql)->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

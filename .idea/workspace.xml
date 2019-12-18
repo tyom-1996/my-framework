@@ -4,7 +4,6 @@
     <list default="true" id="e8c86765-cbbb-477d-9624-aa62250fe90a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/model/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/model/Model.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,7 +66,7 @@
       <updated>1576430072427</updated>
       <workItem from="1576430074259" duration="8289000" />
       <workItem from="1576438845694" duration="15415000" />
-      <workItem from="1576648012139" duration="13558000" />
+      <workItem from="1576648012139" duration="14632000" />
     </task>
     <servers />
   </component>
