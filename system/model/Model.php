@@ -16,22 +16,24 @@ class Model extends Connection {
 
     public function all()
     {
+        $result = [];
+        $sql    =  "SELECT * FROM ".$this->tableName;
+        $data   =  $this->db->query($sql);
 
-            $result = [];
-            $sql    =  "SELECT * FROM ".$this->tableName;
-            $data   =  $this->db->query($sql);
+        while ($r = $data->fetch_assoc()) {
+            $result[] = $r;
+        }
 
-            while ($r = $data->fetch_assoc()) {
-                $result[] = $r;
-            }
-
-            return $result;
+        return $result;
     }
 
     public function get($where = [])
     {
         try {
+
             $where_str = '';
+            $result    = [];
+
             if (!empty($where))
             {
                 $where_str .= "WHERE";
@@ -39,7 +41,15 @@ class Model extends Connection {
                     $where_str .= " $key = $val ";
                 }
             }
-            return  $this->db->query("SELECT * FROM {$this->tableName} ".$where_str)->fetchObject();
+
+            $sql  = "SELECT * FROM $this->tableName ".$where_str;
+            $data =  $this->db->query($sql);
+
+            while ($r = $data->fetch_assoc()) {
+                $result[] = $r;
+            }
+            return  $result;
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -47,11 +57,12 @@ class Model extends Connection {
 
     public function query($sql)
     {
-        try {
-            return $this->db->query("SELECT * FROM ".$this->tableName)->fetchAll();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        $result = [];
+        $data   =  $this->db->query($sql);
+        while ($r = $data->fetch_assoc()) {
+            $result[] = $r;
         }
+        return $result;
     }
 
 

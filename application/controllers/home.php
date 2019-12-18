@@ -8,8 +8,10 @@ class Home extends core
     {
         $User = $this->load_model("User");
 //      $User->all();
-//        $curent_user = $User->get(['id' => 2]);
-        $curent_user = $User->all();
+        $curent_user = $User->get(['is_admin' => 0]);
+//        $curent_user = $User->sql()
+//                       ->select()
+//                       ->where()
 
         echo "<pre>";
         print_r($curent_user);
@@ -18,3 +20,7 @@ class Home extends core
     }
 
 }
+
+
+
+//s
