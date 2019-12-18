@@ -6,6 +6,6 @@ class User extends Model{
 
    public function test()
    {
-       $this->all();
+       self::all();
    }
 }

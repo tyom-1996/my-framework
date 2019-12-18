@@ -16,29 +16,30 @@ class Model extends Connection {
 
     public function all()
     {
-        try {
-            $sql    = "SELECT * FROM ".$this->tableName;
-            return  $this->db->query($sql)->fetchAll();
 
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
+            $result = [];
+            $sql    =  "SELECT * FROM ".$this->tableName;
+            $data   =  $this->db->query($sql);
+
+            while ($r = $data->fetch_assoc()) {
+                $result[] = $r;
+            }
+
+            return $result;
     }
 
     public function get($where = [])
     {
         try {
             $where_str = '';
-            if (!empty($where)) {
+            if (!empty($where))
+            {
                 $where_str .= "WHERE";
                 foreach ($where as $key => $val ) {
                     $where_str .= " $key = $val ";
                 }
             }
-            $sql    = "SELECT * FROM {$this->tableName} ".$where_str;
-
-            $data   = $this->db->query($sql)->fetchAll();
-            return $data;
+            return  $this->db->query("SELECT * FROM {$this->tableName} ".$where_str)->fetchObject();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -46,10 +47,8 @@ class Model extends Connection {
 
     public function query($sql)
     {
-
         try {
-            $sql    = "SELECT * FROM ".$this->tableName;
-            return $this->db->query($sql)->fetchAll();
+            return $this->db->query("SELECT * FROM ".$this->tableName)->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

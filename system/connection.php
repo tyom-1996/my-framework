@@ -25,15 +25,16 @@ class Connection {
     {
         $config = include_once './config/config.php';
 
-        $this->_host     = $config['database']['DB_HOST'];
-        $this->_username = $config['database']['DB_USERNAME'];
-        $this->_password = $config['database']['DB_PASSWORD'];
-        $this->_database = $config['database']['DB_DATABASE'];
+        $this->_host       = $config['database']['DB_HOST'];
+        $this->_username   = $config['database']['DB_USERNAME'];
+        $this->_password   = $config['database']['DB_PASSWORD'];
+        $this->_database   = $config['database']['DB_DATABASE'];
 
-        try {
-            $this->_connection  = new \PDO("mysql:host=$this->_host;dbname=$this->_database", $this->_username, $this->_password);
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        $this->_connection = new\ mysqli($this->_host, $this->_username, $this->_password, $this->_database);
+
+        if(mysqli_connect_errno()) {
+            echo "Connection Failed: " . mysqli_connect_errno();
+            exit();
         }
     }
 
