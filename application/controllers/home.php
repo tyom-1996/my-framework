@@ -11,7 +11,7 @@ class Home extends core
 
 //        $User->test();
         $User->all();
-        $User->get();
+        $User->get(['id' => 5]);
 
 //      $this->load_page('home',array('title' => "home",'name' => "tyom"));
     }
