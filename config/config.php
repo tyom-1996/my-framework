@@ -11,5 +11,4 @@ return [
     ],
 
     "default_controller" => "mainController"
-
 ];

@@ -3,32 +3,10 @@ namespace System\controllers;
 
 Class core{
 
-    public $models;
-
-    function __construct()
+    function load_model($model)
     {
-        $this->load_model();
-    }
-
-    function load_model()
-    {
-        $model = [];
-
-        foreach (glob("./".APPLICATION.'models/*.php') as $filename) {
-
-            include_once $filename;
-
-            $new_name  = explode("/", $filename);
-            $new_name  = $new_name[3];
-            $new_names = substr($new_name, 0, -4);
-            $new_name  = new $new_names;
-            $model     = array($new_names => $new_name);
-
-            array_push($model, (object)$new_name);
-
-        }
-
-        $this->model=(object)$model;
+        include_once "./".APPLICATION.'models/'.$model.'.php';
+        return new $model;
     }
 
     function load_page($pagetoload, $data = null)

@@ -36,26 +36,21 @@ class route{
 
     }
 
-    function use_controller($url_array){
-
+    function use_controller($url_array)
+    {
         $controller_name   = $url_array[0] ;
 
         if(file_exists("./".APPLICATION.'controllers/'.$controller_name.'.php')){
 
             require "./".APPLICATION.'controllers/'.$controller_name.'.php';
-
             $active_controller = new $controller_name;
 
             if(empty($url_array[1])){
-
                 $method = "index";
                 $this->call_controller_function($method,$active_controller);
-
             } else if(!empty($url_array[1]) && empty($url_array[2])){
-
                 $method = $url_array[1];
                 $this->call_controller_function($method,$active_controller);
-
             } else if(!empty($url_array[2])){
                 $method = $url_array[1];
                 $params = $this->get_params($url_array);
@@ -63,9 +58,7 @@ class route{
             }
 
         }else{
-
             $this->redirect(base_url_super().'404.php');
-
         }
     }
 
@@ -96,7 +89,7 @@ class route{
             array_push($params, $url_array[$i]);
         }
 
-        return $params;
+        return      ;
     }
 
 

@@ -2,18 +2,18 @@
 
 use System\controllers\core;
 
+
 class Home extends core
 {
     public function index()
     {
+        $User = $this->load_model("User");
 
-      $this->load_page('home',array('title' => "home",'name' => "tyom"));
+//        $User->test();
+        $User->all();
+        $User->get();
 
+//      $this->load_page('home',array('title' => "home",'name' => "tyom"));
     }
 
-    public function test($a, $b)
-    {
-        print_r($a);
-        print_r($b);
-    }
 }
