@@ -9,8 +9,8 @@ class route{
             $url       = substr($_SERVER['REQUEST_URI'], 1);
             $url_array = explode("/", $url);
 
-            if($url_array[0] == $GLOBALS['base_url']){
-                $this->use_controller(["mainController"]);
+            if($url_array[0] == ''){
+                $this->use_controller([CONFIG['default_controller']]);
             }else{
                 $step = 0;
                 $info = $this->get_urls_array($step,$url_array);
@@ -20,7 +20,7 @@ class route{
         }else{
 
             $url       = substr($_SERVER['REDIRECT_URL'], 1);
-            $base_url  = explode("/", BASE_URL);
+            $base_url  = explode("/", CONFIG['base_url']);
             $url_array = explode("/", $url);
 
             if(!empty($base_url[1])){
@@ -58,7 +58,7 @@ class route{
             }
 
         }else{
-            $this->redirect(BASE_URL_SUPER.'404.php');
+            $this->redirect(CONFIG['base_full_url'].'404.php');
         }
     }
 
@@ -78,7 +78,7 @@ class route{
 
         }
 
-        $this->redirect(BASE_URL_SUPER.'404.php');
+        $this->redirect(CONFIG['base_full_url'].'404.php');
     }
 
     public function get_params($url_array)
