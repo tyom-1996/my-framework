@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8c86765-cbbb-477d-9624-aa62250fe90a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/system/bootstrap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/artframework.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/bootstrap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/system/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/controllers/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/controllers/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/system/route.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +83,7 @@
       <workItem from="1576438845694" duration="15415000" />
       <workItem from="1576648012139" duration="14632000" />
       <workItem from="1576733683508" duration="577000" />
-      <workItem from="1576734739114" duration="23015000" />
+      <workItem from="1576734739114" duration="23969000" />
     </task>
     <servers />
   </component>

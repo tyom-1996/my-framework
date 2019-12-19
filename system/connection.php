@@ -23,12 +23,10 @@ class Connection {
 
     private function __construct()
     {
-        $config            = include_once './application/config/config.php';
-
-        $this->_host       = $config['database']['DB_HOST'];
-        $this->_username   = $config['database']['DB_USERNAME'];
-        $this->_password   = $config['database']['DB_PASSWORD'];
-        $this->_database   = $config['database']['DB_DATABASE'];
+        $this->_host       = $GLOBALS['config']['database']['DB_HOST'];
+        $this->_username   = $GLOBALS['config']['database']['DB_USERNAME'];
+        $this->_password   = $GLOBALS['config']['database']['DB_PASSWORD'];
+        $this->_database   = $GLOBALS['config']['database']['DB_DATABASE'];
 
         $this->_connection = new\ mysqli($this->_host, $this->_username, $this->_password, $this->_database);
 

@@ -2,6 +2,7 @@
 session_start();
 
 $GLOBALS['base_url'] = '';
+$GLOBALS['config'] = include_once './application/config/config.php';;
 
 $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://';
 
