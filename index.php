@@ -2,12 +2,6 @@
 
 require 'vendor/autoload.php';
 
-$system_path        = 'system';
-$application_folder = 'application';
-$view_folder        = 'application/views';
+ini_set('display_errors', 1);
 
-define('BASEPATH', $system_path.'/');
-define('APPLICATION', $application_folder.'/');
-define('VIEW', $view_folder.'/');
-
-require_once BASEPATH . 'artframework.php';
+require_once 'system/bootstrap.php';

@@ -1,76 +1,116 @@
 <?php
+namespace System;
 
 use System\Connection;
 
-
-class DB
+class DB extends Connection
 {
+    public $db;
+    public $query_part;
+    private static $_instance_DB;
+    public $action;
 
-    private static $instance = NULL;
+    public function __construct(){
+        $this->db = Connection::getInstance()->getConnection();
+    }
 
     public static function sql()
     {
-        self::$instance = new self();
-        return self::$instance;
+        if (!self::$_instance_DB) {
+            self::$_instance_DB = new self();
+        }
+        return self::$_instance_DB;
     }
 
-    // These methods set the query clauses
-    // Use * as default
-    public function select(string $select_options = "*")
+    public function select($select_options = "*")
     {
+        $this->query_part .= "SELECT " . $select_options;
+        $this->action      = __FUNCTION__;
 
-        $query_part = "SELECT " . $select_options;
-        $this->select = $query_part;
         return $this;
     }
 
-    // From table in DB
-    public function from(string $from_options)
+    public function from($from_options)
     {
+        $this->query_part .= " FROM " . $from_options;
+        $this->action      = __FUNCTION__;
 
-        $query_part = "FROM " . $from_options;
-
-        $this->from = $query_part;
         return $this;
     }
 
-    // These methods set the query clauses
-    public function where(string $where_options)
+    public function where()
     {
+        $where_options = '';
 
-        $query_part = "WHERE " . $where_options;
-        $this->where = $query_part;
+        foreach (func_get_args() as $arg) {
+            $where_options.="$arg ";
+        }
+
+        if($this->action == 'orWhere' || $this->action == __FUNCTION__) {
+            $this->query_part .= "AND " . $where_options;
+        } else{
+            $this->query_part .= " WHERE " . $where_options;
+        }
+
+        $this->action = __FUNCTION__;
+
         return $this;
     }
 
-    // GroupBy
-    public function groupBy(string $group_options)
+    public function orWhere()
     {
+        $or_where_options = '';
 
-        $query_part = "groupBy " . $group_options;
-        $this->groupBy = $query_part;
+        foreach (func_get_args() as $arg) {
+            $or_where_options.="$arg ";
+        }
+
+        if($this->action == 'where' || $this->action == __FUNCTION__) {
+            $this->query_part .= "OR " . $or_where_options;
+        } else{
+            $this->query_part .= " WHERE " . $or_where_options;
+        }
+
+        $this->action      = __FUNCTION__;
+
         return $this;
     }
 
+    public function groupBy($group_options)
+    {
+        $this->query_part .= " GROUP BY " . $group_options;
+        $this->action      = __FUNCTION__;
+
+        return $this;
+    }
+
+    public function orderBy($order_options,$argument)
+    {
+        $this->query_part .= " ORDER BY " . $order_options." ".$argument ;
+        $this->action      = __FUNCTION__;
+
+        return $this;
+    }
 
     public function get()
     {
-        $array = (array)$this;
-        $string = implode(" ", $array);
+        $result_arr = [];
+        $result     = $this->db->query($this->query_part);
 
-        return $string;
+        if($result->num_rows > 0 ){
+            while ($r = $result->fetch_assoc()){
+                $result_arr[] = $r;
+            }
+        }
+        $this->query_part = '';
+
+        return $result_arr ;
+    }
+
+    public function get_query()
+    {
+        return $this->query_part;
     }
 
 }
 
-
-//
-/// Use class DB
-//$query = DB::sql()
-//    ->select()
-//    ->from("CustomerInfo")
-//    ->where("customer_id > 300")
-//    ->get();
-//
-//// Echo result
-//echo $query;

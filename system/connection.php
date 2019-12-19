@@ -23,7 +23,7 @@ class Connection {
 
     private function __construct()
     {
-        $config = include_once './config/config.php';
+        $config            = include_once './application/config/config.php';
 
         $this->_host       = $config['database']['DB_HOST'];
         $this->_username   = $config['database']['DB_USERNAME'];
@@ -44,4 +44,9 @@ class Connection {
     {
         return $this->_connection;
     }
+
+
+
 }
+
+

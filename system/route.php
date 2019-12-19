@@ -20,7 +20,7 @@ class route{
         }else{
 
             $url       = substr($_SERVER['REDIRECT_URL'], 1);
-            $base_url  = explode("/", base_url());
+            $base_url  = explode("/", BASE_URL);
             $url_array = explode("/", $url);
 
             if(!empty($base_url[1])){
@@ -58,7 +58,7 @@ class route{
             }
 
         }else{
-            $this->redirect(base_url_super().'404.php');
+            $this->redirect(BASE_URL_SUPER.'404.php');
         }
     }
 
@@ -78,7 +78,7 @@ class route{
 
         }
 
-        $this->redirect(base_url_super().'404.php');
+        $this->redirect(BASE_URL_SUPER.'404.php');
     }
 
     public function get_params($url_array)

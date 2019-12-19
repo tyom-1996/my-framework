@@ -1,7 +1,7 @@
 <?php
 namespace System\controllers;
 
-Class core{
+Class controller{
 
     function load_model($model)
     {

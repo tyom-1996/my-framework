@@ -1,26 +1,32 @@
 <?php
 
-use System\controllers\core;
+use System\controllers\controller;
+use System\DB;
 
-class Home extends core
+class Home extends controller
 {
     public function index()
     {
         $User = $this->load_model("User");
-//      $User->all();
-        $curent_user = $User->get(['is_admin' => 0]);
-//        $curent_user = $User->sql()
-//                       ->select()
-//                       ->where()
+
+        $model_user = $User->all();
+        $db_user    = DB::sql()
+                      ->select('*')
+                      ->from("users")
+                      ->where("id", "=", 1)
+                      ->orWhere("id", "=", 2)
+                      ->orderBy('id','DESC');
+
+//                      ->get();
 
         echo "<pre>";
-        print_r($curent_user);
 
-      $this->load_page('home',array('title' => "home",'name' => "tyom"));
+        print_r($db_user->get_query());
+        echo "<br>";
+        print_r($db_user->get());die;
+
+      $this->load_page('home',array('title' => "home",'name' => "tyom","user_data" => $db_user));
     }
 
 }
 
-
-
-//s
