@@ -3,7 +3,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use Comands\createController;
+use System\comands\createController;
 
 $application = new Application();
 

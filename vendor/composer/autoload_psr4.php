@@ -12,6 +12,5 @@ return array(
     'Symfony\\Contracts\\Service\\' => array($vendorDir . '/symfony/service-contracts'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
-    'Comands\\' => array($baseDir . '/Comands'),
     'App\\' => array($baseDir . '/app'),
 );

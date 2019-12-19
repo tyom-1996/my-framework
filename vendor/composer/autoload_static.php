@@ -25,10 +25,6 @@ class ComposerStaticInitdd5ed7f59eadce6e2885df243e95375f
         array (
             'Psr\\Container\\' => 14,
         ),
-        'C' => 
-        array (
-            'Comands\\' => 8,
-        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -59,10 +55,6 @@ class ComposerStaticInitdd5ed7f59eadce6e2885df243e95375f
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
-        'Comands\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Comands',
         ),
         'App\\' => 
         array (
