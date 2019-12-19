@@ -6,5 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\controllers\\defaultController' => $baseDir . '/application/controllers/defaultController.php',
 );

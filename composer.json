@@ -10,7 +10,8 @@
     "autoload": {
         "psr-4" : {
             "System\\" : "system",
-            "App\\" : "application"
-        }
+            "App\\" : "app"
+        },
+        "files" : ["app/config/load_conf.php"]
     }
 }

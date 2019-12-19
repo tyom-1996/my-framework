@@ -1,24 +1,28 @@
 <?php
-namespace System\controllers;
+
+namespace System\controller;
+
+use System\database\Connection;
 
 Class controller{
 
     function load_model($model)
     {
-        include_once "./".APPLICATION.'models/'.$model.'.php';
+        include_once "./".APP_CONF['app_path'].'models/'.$model.'.php';
         return new $model;
     }
 
     function load_page($pagetoload, $data = null)
     {
-        if(file_exists("./".APPLICATION.'views/'.$pagetoload.'.php'))
+        if(file_exists("./".APP_CONF['app_path'].'views/'.$pagetoload.'.php'))
         {
-            if($data != null){
+            if($data != null)
+            {
                 extract($data);
                 unset($data);
             }
 
-            include "./".APPLICATION.'views/'.$pagetoload.'.php';
+            include "./".APP_CONF['app_path'].'views/'.$pagetoload.'.php';
             exit();
         }
 

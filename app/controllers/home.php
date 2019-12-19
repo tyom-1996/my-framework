@@ -1,15 +1,14 @@
 <?php
 
-use System\controllers\controller;
+use System\controller\controller;
 use System\DB;
 
 class Home extends controller
 {
     public function index()
     {
-        $User = $this->load_model("User");
-
-        $model_user = $User->all();
+//      $User = $this->load_model("User");
+//      $model_user = $User->all();
         $db_user    = DB::sql()
                       ->select('*')
                       ->from("users")

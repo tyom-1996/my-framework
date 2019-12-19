@@ -10,7 +10,7 @@ class route{
             $url_array = explode("/", $url);
 
             if($url_array[0] == ''){
-                $this->use_controller([CONFIG['default_controller']]);
+                $this->use_controller([APP_CONF['default_controller']]);
             }else{
                 $step = 0;
                 $info = $this->get_urls_array($step,$url_array);
@@ -20,7 +20,7 @@ class route{
         }else{
 
             $url       = substr($_SERVER['REDIRECT_URL'], 1);
-            $base_url  = explode("/", CONFIG['base_url']);
+            $base_url  = explode("/", APP_CONF['base_url']);
             $url_array = explode("/", $url);
 
             if(!empty($base_url[1])){
@@ -40,9 +40,9 @@ class route{
     {
         $controller_name   = $url_array[0] ;
 
-        if(file_exists("./".APPLICATION.'controllers/'.$controller_name.'.php')){
+        if(file_exists("./".APP_CONF['app_path'].'controllers/'.$controller_name.'.php')){
 
-            require "./".APPLICATION.'controllers/'.$controller_name.'.php';
+            require "./".APP_CONF['app_path'].'controllers/'.$controller_name.'.php';
             $active_controller = new $controller_name;
 
             if(empty($url_array[1])){
@@ -58,7 +58,7 @@ class route{
             }
 
         }else{
-            $this->redirect(CONFIG['base_full_url'].'404.php');
+            $this->redirect(APP_CONF['base_full_url'].'404.php');
         }
     }
 
@@ -78,7 +78,7 @@ class route{
 
         }
 
-        $this->redirect(CONFIG['base_full_url'].'404.php');
+        $this->redirect(APP_CONF['base_full_url'].'404.php');
     }
 
     public function get_params($url_array)
