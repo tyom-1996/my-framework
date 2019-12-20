@@ -48,8 +48,7 @@ class DB extends Connection
     }
 
 
-
-//    Insert methods
+//    ------------Insert methods START----------------
 
     public function createFields($fields)
     {
@@ -86,12 +85,53 @@ class DB extends Connection
         return $query_part .=")";
     }
 
-    //    Insert methods
+//    ------------Insert methods END----------------
+
+
+
+//    ------------Update methods START----------------
+
+    public function update($table = '',$arguments)
+    {
+        $last_value_pos = count($arguments)-1;
+        $index          = 0;
+        $this->query_part .= "UPDATE ".$table." SET ";
+
+        foreach ($arguments as $key =>$val){
+            $val_ = gettype($val) == 'string' ? "'$val'" : "$val";
+            if($last_value_pos != $index)
+            {
+                $val_ .= ", ";
+            }
+            $this->query_part .= $key." = "."$val_ ";
+            $index++;
+        }
+
+        $this->action = $this->action_part = __FUNCTION__;
+
+        return $this;
+    }
+
+//    "UPDATE users SET name='poxos', is_admin=0"
+
+
+//    ------------Update methods END----------------
 
     public function run()
     {
         try{
-            return $this->db->query($this->query_part);
+            $status = $this->db->query($this->query_part);
+
+            if($this->action_part == 'insert') {
+                if($status == true) {
+                    return $this->getLastInsertData();
+                } else {
+                    return [];
+                }
+                exit();
+            }
+
+            return $status;
 
         } catch(Exception $e) {
             $error = $e->getMessage();
@@ -100,15 +140,19 @@ class DB extends Connection
     }
 
 
-
-    //    Update methods
-
-    public function update($update_options = "*")
+    public function getLastInsertData()
     {
-        $this->query_part .= "SELECT " . $update_options;
-        $this->action = $this->action_part = __FUNCTION__;
+        return $this->db->query("");
+        $result_arr = [];
+        $result     = $this->db->query("");
 
-        return $this;
+        if($result->num_rows > 0 ){
+            while ($r = $result->fetch_assoc()){
+                $result_arr[] = $r;
+            }
+        }
+
+
     }
 
     public function from($from_options)
