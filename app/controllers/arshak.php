@@ -2,6 +2,6 @@
         
 use System\controller\controller;
 
-class user extends controller { 
+class arshak extends controller { 
     
 }

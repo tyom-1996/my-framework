@@ -9,31 +9,8 @@
 </head>
 <body>
     <h1><?php echo $title;?></h1>
-    <h3><?php echo $name;?></h3>
-
-    <?php foreach ($user_data as $val ): ?>
-
-        <label style="width: 60px;display: block">ID</label>
-
-        <input type="text" value="<?php echo $val['id'] ?>">
-        <br>
 
 
-        <label style="width: 60px;display: block">Name</label>
-
-        <input type="text" value="<?php echo $val['name'] ?>">
-
-        <br>
-
-
-        <label style="width: 60px;display: block">Email</label>
-        <input type="text" value="<?php echo $val['email'] ?>">
-        <br>
-
-    <hr>
-
-    <?php endforeach; ?>
-    </div>
 
 </body>
 </html>

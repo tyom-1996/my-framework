@@ -61,12 +61,9 @@ class createController extends Command
             $content = $this->getControllerContent($controller);
 
             if( !file_exists($file)) {
-
                 $this->createController($file,$content);
                 $answer = "Created $controller controller";
-
             } else {
-
                 $answer = "ERROR: $controller Controller exist";
             }
 

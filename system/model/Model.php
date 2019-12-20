@@ -48,11 +48,13 @@ class Model extends Connection {
             while ($r = $data->fetch_assoc()) {
                 $result[] = $r;
             }
+
             return  $result;
 
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+
     }
 
     public function query($sql)
@@ -64,6 +66,5 @@ class Model extends Connection {
         }
         return $result;
     }
-
 
 }
