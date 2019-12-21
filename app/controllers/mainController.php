@@ -1,6 +1,9 @@
 <?php
 
-class mainController {
+use System\Controller;
+use System\DB;
+
+class mainController extends Controller {
 
     public function index()
     {

@@ -4,10 +4,12 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use System\comands\createController;
+use System\comands\deleteController;
 
 $application = new Application();
 
 # add our commands
 $application->add(new createController());
+$application->add(new deleteController());
 
 $application->run();

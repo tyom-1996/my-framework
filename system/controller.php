@@ -1,14 +1,14 @@
 <?php
 
-namespace System\controller;
+namespace System;
 
 use System\database\Connection;
 
-Class controller{
+Class Controller{
 
     function load_model($model)
     {
-        include_once "./".APP_CONF['app_path'].'models/'.$model.'.php';
+        include_once APP_CONF['ROOT']."./".APP_CONF['app_path'].'models/'.$model.'.php';
         return new $model;
     }
 

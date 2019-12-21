@@ -1,7 +1,12 @@
 <?php
 
-require 'vendor/autoload.php';
+/**
+ * LedaPHP - A PHP MVC Framework
+ *
+ * @package  Leda
+ * @author   Artyom Hakobjanyan
+ */
 
-ini_set('display_errors', 1);
 
-require_once 'system/bootstrap.php';
+
+//require_once __DIR__.'/public/index.php';

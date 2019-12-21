@@ -1,6 +1,6 @@
 <?php
 
-namespace System\model;
+namespace System;
 
 use System\Connection;
 

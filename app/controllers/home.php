@@ -1,56 +1,74 @@
 <?php
 
-use System\controller\controller;
+use System\Controller;
 use System\DB;
+use System\View;
 
-class Home extends controller
+
+class Home extends Controller
 {
+    public function test()
+    {
+        echo "Test"."<br>" ;
+    }
+
     public function index()
     {
+
+//        echo shell_exec("ping google.com");;
+
+
 //      MODEL QUERY
 //      $User = $this->load_model("User");
-//      $model_user = $User->all();
+//      $select_data = $User->all();
+//
 
-//        DB QUERYES
 
 //        SELECT
 //        $db_user = DB::sql()
 //                   ->select('*')
-//                   ->from("users")
-//                   ->where("id", "=", 1)
-//                   ->orWhere("id", "=", 2)
+//                   ->from("test")
+//                   ->where("id", "=", 72)
+//                   ->orWhere("id", "=", 73)
 //                   ->orderBy('id','DESC');
-
-//        $select_query = $db_user->get_query();
+//
 //        $select_data  = $db_user->get();
 //
-//        print_r($select_query);
+//        echo "<pre>";
 //        print_r($select_data);die;
-
+//
 
 
 //        INSERT
-        $insert_user   = DB::sql()->insert('users', ['name','is_admin','email'],['vazgen',46,'tyom46@mail.ru']);
-        $insert_query  = $insert_user->get_query();
-        $insert_status = $insert_user->run();
-        print_r($insert_status);
-        print_r($insert_query);
+//        $insert_user   = DB::sql()
+//                             ->insert('test', ['name','email','status'],['vazgen','tyom465@mail.ru',46])
+//                             ->run();
+//        $insert_id     = $insert_user->insert_id();
+//        $insert_status = $insert_user->insert_status();
+//
+//
+//        print_r($insert_id);
+//        echo "<br>";
+//        print_r($insert_status);
+//        echo "<br>";
+//        echo "<hr>";
+
 
 
 //        UPDATE
 //        $update_user  = DB::sql()
-//                            ->update('users', ['name' => 'artyom','is_admin' => 3,'email' =>'update@gmail.com'])
-//                            ->where("id", "=", "23");
+//                            ->update('test', ['name' => 'u','email' =>'update@gmail.com','status' => 3])
+//                            ->where("id", "=", "72")
+//                            ->orWhere("id", "=", "74")
+//                            ->run();
 //
-//        $update_query  = $update_user->get_query();
-//        $update_status = $update_user->run();
+//        $update_status = $update_user->update_status();
 //
-//        print_r($update_query);
-//        echo "<br>";
 //        print_r($update_status);die;
 
 
-      $this->load_page('home',array('title' => "home",'name' => "tyom"));
+      View::render('home',array('title' =>"Home page",'name' => "tyom"));
+//      $this->load_page('home',array('title' => "home",'name' => "tyom"));
     }
 
 }

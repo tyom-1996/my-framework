@@ -1,99 +1,100 @@
 <?php
 
+namespace System;
+
 class route{
 
-    public function __construct(){
+    public $url_array;
+    public $controllerName;
+    public $methodName;
+    public $args;
 
-        if(empty($_SERVER['REDIRECT_URL'])) {
 
-            $url       = substr($_SERVER['REQUEST_URI'], 1);
-            $url_array = explode("/", $url);
-
-            if($url_array[0] == ''){
-                $this->use_controller([APP_CONF['default_controller']]);
-            }else{
-                $step = 0;
-                $info = $this->get_urls_array($step,$url_array);
-                $this->use_controller($info);
-            }
-
-        }else{
-
-            $url       = substr($_SERVER['REDIRECT_URL'], 1);
-            $base_url  = explode("/", APP_CONF['base_url']);
-            $url_array = explode("/", $url);
-
-            if(!empty($base_url[1])){
-                $step = $base_url[1] == $url_array[0]  ? 1 : 0;
-            }else{
-                $step = 0;
-            }
-
-            $info = $this->get_urls_array($step,$url_array);
-            $this->use_controller($info);
-
-        }
-
-    }
-
-    function use_controller($url_array)
+    public function __construct()
     {
-        $controller_name   = $url_array[0] ;
 
-        if(file_exists("./".APP_CONF['app_path'].'controllers/'.$controller_name.'.php')){
-
-            require "./".APP_CONF['app_path'].'controllers/'.$controller_name.'.php';
-            $active_controller = new $controller_name;
-
-            if(empty($url_array[1])){
-                $method = "index";
-                $this->call_controller_function($method,$active_controller);
-            } else if(!empty($url_array[1]) && empty($url_array[2])){
-                $method = $url_array[1];
-                $this->call_controller_function($method,$active_controller);
-            } else if(!empty($url_array[2])){
-                $method = $url_array[1];
-                $params = $this->get_params($url_array);
-                $this->call_controller_function($method,$active_controller,$params);
-            }
-
-        }else{
-            $this->redirect(APP_CONF['base_full_url'].'404.php');
-        }
+        $this->url_array       = $this->parseUrl();
+        $this->controllerName  = $this->getControllerName($this->url_array);
+        $this->methodName      = $this->getControllerMethod($this->url_array);
+        $this->args            = $this->getArguments($this->url_array);
     }
 
 
+    public function run(){
 
-    public function call_controller_function($method, $active_controller, $params = [])
-    {
-        if(method_exists($active_controller, $method) == true)
-        {
-            if (empty($params)) {
-                call_user_func(array($active_controller, $method));
-                exit();
+
+
+        if($this->controllerName == '404.php') {
+            include APP_CONF['ROOT'].'/404.php';
+            exit();
+        }
+
+        $controller_path = APP_CONF['ROOT']."/".APP_CONF['app_path'].'controllers/'.$this->controllerName.'.php';
+
+        if(file_exists($controller_path)) {
+
+            require $controller_path;
+
+            $controller = new $this->controllerName;
+
+            if(!empty($this->args)) {
+
+                call_user_func_array(array($controller, $this->methodName), $this->args);
+
             } else {
-                call_user_func_array(array($active_controller, $method),$params);
-                exit();
+
+                call_user_func(array($controller, $this->methodName));
+
             }
 
+        } else {
+
+            $this->redirect('/404.php');
         }
 
-        $this->redirect(APP_CONF['base_full_url'].'404.php');
     }
 
-    public function get_params($url_array)
+
+    public function getArguments($arg)
     {
-        $params = [];
+        $arguments = [];
+        $count     = count($arg);
 
-        for ($i=2; $i < count($url_array) ; $i++) {
-            array_push($params, $url_array[$i]);
+        for ($i=2; $i < $count ; $i++) {
+            array_push($arguments, $arg[$i]);
         }
 
-        return      ;
+        return $arguments;
     }
 
+    public function getControllerName($controller)
+    {
+        return isset($controller[0]) && !empty($controller[0]) ? $controller[0] : APP_CONF['default_controller'];
+    }
 
+    public function getControllerMethod($method)
+    {
+        return isset($method[1]) && !empty($method[1]) ? $method[1] : 'index';
+    }
 
+    public function parseUrl()
+    {
+        if(isset($_GET['route']))
+        {
+            $url     = explode('/', filter_var(rtrim($_GET['route'], '/'), FILTER_SANITIZE_URL));
+            $actions = [];
+            $new_url =  array_filter($url, function($element) {
+                return !empty($element);
+            });
+
+            foreach ($new_url as $key) {
+                $actions[] = $key;
+            }
+            return $actions;
+        }
+
+        return [];
+    }
 
 
     public function redirect($url)
@@ -101,17 +102,5 @@ class route{
         header('location:'.$url);
     }
 
-    public function get_urls_array($step,$url_array)
-    {
-        $info = [];
-
-        for($i=$step; $i<count($url_array); $i++){
-            array_push($info, $url_array[$i]);
-        }
-
-        return $info;
-    }
-
 }
 
-new route();

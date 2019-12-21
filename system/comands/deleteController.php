@@ -8,15 +8,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class createController extends Command
+class deleteController extends Command
 {
-    protected $commandName = 'make:controller';
+    protected $commandName = 'delete:controller';
     protected $commandDescription = "Greets Someone";
 
     protected $commandArgumentName = "name";
     protected $commandArgumentDescription = "Who do you want to greet?";
 
-    protected $commandOptionName = "m"; // should be specified like "make:controller User --m"
+    protected $commandOptionName = "m";
     protected $commandOptionDescription = 'If set, it will greet in uppercase letters';
 
     protected function configure()
@@ -42,29 +42,26 @@ class createController extends Command
     {
         $controller = $input->getArgument($this->commandArgumentName);
 
-        $create_controller = false;
-        $answer             = '';
+        $delete_controller = false;
+        $answer            = '';
 
         if ($controller) {
-            $create_controller = true;
+            $delete_controller = true;
         } else {
             $answer = 'ERROR: Missing controller name';
         }
 
-//        if ($input->getOption($this->commandOptionName)) {
-//            $create_model = true;
-//        }
+        if($delete_controller) {
 
-        if($create_controller) {
+            $file = $this->getControllerPath($controller);
 
-            $file    = $this->getControllerPath($controller);
-            $content = $this->getControllerContent($controller);
+            if(file_exists($file)) {
 
-            if( !file_exists($file)) {
-                $this->createController($file,$content,$controller);
-                $answer = "Created $controller controller";
+                $del_status = $this->deleteController($file);
+                $answer     = $del_status == false ? "$controller controller cannot be deleted due to an error" : "Deleted $controller controller"; ;
+
             } else {
-                $answer = "ERROR: $controller Controller exist";
+                $answer = "ERROR: $controller Controller not exist";
             }
 
         }
@@ -77,21 +74,12 @@ class createController extends Command
 
     public function getControllerPath($controller)
     {
-       return "./".APP_CONF['app_path']."controllers/".$controller.".php";
+        return "./".APP_CONF['app_path']."controllers/".$controller.".php";
     }
 
-    public function getControllerContent($controller)
+    public function deleteController($file)
     {
-        $example_class = "./".APP_CONF['system_path']."comands/examples/exampleController.php";
-        $content       = file_get_contents($example_class);
-
-        return str_replace("exampleController", ucfirst($controller), $content);
+       return unlink($file);
     }
 
-    public function createController($file,$content,$controller )
-    {
-        $fp = fopen($file, "w");
-        fwrite($fp, $content);
-        fclose ($fp);
-    }
 }

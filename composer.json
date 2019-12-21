@@ -14,6 +14,6 @@
             "System\\" : "system",
             "App\\" : "app"
         },
-        "files" : ["app/config/load_conf.php"]
+        "files" : ["config/load_conf.php"]
     }
 }

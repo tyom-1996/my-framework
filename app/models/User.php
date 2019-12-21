@@ -1,12 +1,14 @@
 <?php
 
-use System\model\Model;
+
+use System\Model;
 
 class User extends Model{
 
-   public function test()
-   {
+   public function index() {
 
-//       self::all();
+            echo "User modal load";
+
    }
+
 }
