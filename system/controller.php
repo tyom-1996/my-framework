@@ -6,18 +6,16 @@ use System\database\Connection;
 
 Class Controller{
 
-    function load_model($model)
-    {
+    function loadModel($model) {
         include_once APP_CONF['ROOT']."./".APP_CONF['app_path'].'models/'.$model.'.php';
         return new $model;
     }
 
-    function load_page($pagetoload, $data = null)
-    {
-        if(file_exists("./".APP_CONF['app_path'].'views/'.$pagetoload.'.php'))
-        {
-            if($data != null)
-            {
+    function renderView($pagetoload, $data = null) {
+
+        if(file_exists("./".APP_CONF['app_path'].'views/'.$pagetoload.'.php')) {
+
+            if($data != null) {
                 extract($data);
                 unset($data);
             }
@@ -29,8 +27,7 @@ Class Controller{
         $this->redirect('/404.php');
     }
 
-    public function redirect($url)
-    {
+    public function redirect($url) {
         header('location:'.$url);
     }
 

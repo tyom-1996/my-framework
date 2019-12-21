@@ -79,19 +79,21 @@ class DB extends Connection
     }
 
 
-    public function createValues($values)
-    {
+    public function createValues($values) {
+
         $last_value_pos = count($values)-1;
         $query_part  = "";
 
-        foreach ($values as $key =>$val)
-        {
+        foreach ($values as $key =>$val) {
+
             $val_ = gettype($val) == 'string' ? "'$val'" : "$val";
-            if($last_value_pos != $key)
-            {
+
+            if($last_value_pos != $key) {
                 $val_ .= ", ";
             }
+
             $query_part .= "$val_";
+
         }
 
         return $query_part .=")";
@@ -103,14 +105,14 @@ class DB extends Connection
 
 //    ------------Update methods START----------------
 
-    public function update($table = '',$arguments)
-    {
+    public function update($table = '',$arguments) {
+
         $last_value_pos = count($arguments)-1;
         $index          = 0;
         $this->query_part .= "UPDATE ".$table." SET ";
 
-        foreach ($arguments as $key =>$val)
-        {
+        foreach ($arguments as $key =>$val) {
+
             $val_ = gettype($val) == 'string' ? "'$val'" : "$val";
 
             if($last_value_pos != $index) {
@@ -128,17 +130,17 @@ class DB extends Connection
 
 //    ------------Update methods END----------------
 
-    public function run()
-    {
+    public function run() {
+
         try{
             $status           = $this->db->query($this->query_part);
             $this->query_part = "";
 
             if ($status) {
                 if($this->action_part == 'insert') {
-                    $this->set_insert_answer_options($this->db->insert_id,$status);
+                    $this->setInsertAnswerOptions($this->db->insert_id,$status);
                 } elseif ($this->action_part == 'update') {
-                    $this->set_update_answer_options($status);
+                    $this->setUpdateAnswerOptions($status);
                 }
                 return $this;
             }
@@ -152,50 +154,46 @@ class DB extends Connection
     }
 
 
-    public function set_insert_answer_options($insert_id,$insertStatus)
-    {
+    public function setInsertAnswerOptions($insert_id,$insertStatus) {
         self::$insertId = $insert_id;
         self::$insertStatus = $insertStatus;
     }
 
 
-    public function set_update_answer_options($updateStatus)
-    {
+    public function setUpdateAnswerOptions($updateStatus) {
         self::$updateStatus = $updateStatus;
     }
 
 
-    public function insert_id()
-    {
+    public function insertId() {
         if($this->action_part == 'insert') {
             return self::$insertId;
         }
     }
 
-    public function insert_status()
+    public function insertStatus()
     {
         if($this->action_part == 'insert') {
             return self::$insertStatus;
         }
     }
 
-    public function update_status()
-    {
+    public function updateStatus() {
         if($this->action_part == 'update') {
             return self::$updateStatus;
         }
     }
 
-    public function from($from_options)
-    {
+    public function from($from_options) {
+
         $this->query_part .= " FROM " . $from_options;
         $this->action      = __FUNCTION__;
 
         return $this;
     }
 
-    public function where()
-    {
+    public function where() {
+
         $where_options = '';
 
         foreach (func_get_args() as $arg) {
@@ -213,8 +211,8 @@ class DB extends Connection
         return $this;
     }
 
-    public function orWhere()
-    {
+    public function orWhere() {
+
         $or_where_options = '';
 
         foreach (func_get_args() as $arg) {
@@ -232,24 +230,21 @@ class DB extends Connection
         return $this;
     }
 
-    public function groupBy($group_options)
-    {
+    public function groupBy($group_options) {
         $this->query_part .= " GROUP BY ".$group_options;
         $this->action      = __FUNCTION__;
 
         return $this;
     }
 
-    public function orderBy($order_options,$argument)
-    {
+    public function orderBy($order_options,$argument) {
         $this->query_part .= " ORDER BY ".$order_options." ".$argument ;
         $this->action      = __FUNCTION__;
 
         return $this;
     }
 
-    public function get()
-    {
+    public function get() {
         $result_arr = [];
         $result     = $this->db->query($this->query_part);
 

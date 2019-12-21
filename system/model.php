@@ -14,8 +14,8 @@ class Model extends Connection {
         $this->tableName = lcfirst(get_class($this)).'s';
     }
 
-    public function all()
-    {
+    public function all() {
+
         $result = [];
         $sql    =  "SELECT * FROM ".$this->tableName;
         $data   =  $this->db->query($sql);
@@ -25,17 +25,16 @@ class Model extends Connection {
         }
 
         return $result;
+
     }
 
-    public function get($where = [])
-    {
-        try {
+    public function get($where = []) {
 
+        try {
             $where_str = '';
             $result    = [];
 
-            if (!empty($where))
-            {
+            if (!empty($where)) {
                 $where_str .= "WHERE";
                 foreach ($where as $key => $val ) {
                     $where_str .= " $key = $val ";
@@ -57,13 +56,15 @@ class Model extends Connection {
 
     }
 
-    public function query($sql)
-    {
+    public function query($sql) {
+
         $result = [];
         $data   =  $this->db->query($sql);
+
         while ($r = $data->fetch_assoc()) {
             $result[] = $r;
         }
+
         return $result;
     }
 

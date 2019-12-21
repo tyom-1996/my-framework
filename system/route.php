@@ -77,10 +77,10 @@ class route{
         return isset($method[1]) && !empty($method[1]) ? $method[1] : 'index';
     }
 
-    public function parseUrl()
-    {
-        if(isset($_GET['route']))
-        {
+    public function parseUrl() {
+
+        if(isset($_GET['route'])) {
+
             $url     = explode('/', filter_var(rtrim($_GET['route'], '/'), FILTER_SANITIZE_URL));
             $actions = [];
             $new_url =  array_filter($url, function($element) {
@@ -97,8 +97,7 @@ class route{
     }
 
 
-    public function redirect($url)
-    {
+    public function redirect($url) {
         header('location:'.$url);
     }
 

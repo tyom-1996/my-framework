@@ -19,8 +19,7 @@ class createController extends Command
     protected $commandOptionName = "m"; // should be specified like "make:controller User --m"
     protected $commandOptionDescription = 'If set, it will greet in uppercase letters';
 
-    protected function configure()
-    {
+    protected function configure() {
         $this
             ->setName($this->commandName)
             ->setDescription($this->commandDescription)
@@ -38,11 +37,10 @@ class createController extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $controller = $input->getArgument($this->commandArgumentName);
+    protected function execute(InputInterface $input, OutputInterface $output) {
 
-        $create_controller = false;
+        $controller         = $input->getArgument($this->commandArgumentName);
+        $create_controller  = false;
         $answer             = '';
 
         if ($controller) {
@@ -50,10 +48,6 @@ class createController extends Command
         } else {
             $answer = 'ERROR: Missing controller name';
         }
-
-//        if ($input->getOption($this->commandOptionName)) {
-//            $create_model = true;
-//        }
 
         if($create_controller) {
 
@@ -75,21 +69,19 @@ class createController extends Command
 
 
 
-    public function getControllerPath($controller)
-    {
+    public function getControllerPath($controller) {
        return "./".APP_CONF['app_path']."controllers/".$controller.".php";
     }
 
-    public function getControllerContent($controller)
-    {
+    public function getControllerContent($controller) {
+
         $example_class = "./".APP_CONF['system_path']."comands/examples/exampleController.php";
         $content       = file_get_contents($example_class);
 
         return str_replace("exampleController", ucfirst($controller), $content);
     }
 
-    public function createController($file,$content,$controller )
-    {
+    public function createController($file,$content,$controller ) {
         $fp = fopen($file, "w");
         fwrite($fp, $content);
         fclose ($fp);

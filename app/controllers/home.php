@@ -19,7 +19,7 @@ class Home extends Controller
 
 
 //      MODEL QUERY
-//      $User = $this->load_model("User");
+//      $User = $this->loadModel("User");
 //      $select_data = $User->all();
 //
 
@@ -43,8 +43,8 @@ class Home extends Controller
 //        $insert_user   = DB::sql()
 //                             ->insert('test', ['name','email','status'],['vazgen','tyom465@mail.ru',46])
 //                             ->run();
-//        $insert_id     = $insert_user->insert_id();
-//        $insert_status = $insert_user->insert_status();
+//        $insert_id     = $insert_user->insertId();
+//        $insert_status = $insert_user->insertStatus();
 //
 //
 //        print_r($insert_id);
@@ -62,13 +62,14 @@ class Home extends Controller
 //                            ->orWhere("id", "=", "74")
 //                            ->run();
 //
-//        $update_status = $update_user->update_status();
+//        $update_status = $update_user->updateStatus();
 //
 //        print_r($update_status);die;
 
 
+
       View::render('home',array('title' =>"Home page",'name' => "tyom"));
-//      $this->load_page('home',array('title' => "home",'name' => "tyom"));
+//      $this->renderView('home',array('title' => "home",'name' => "tyom"));
     }
 
 }

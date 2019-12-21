@@ -19,8 +19,7 @@ class deleteController extends Command
     protected $commandOptionName = "m";
     protected $commandOptionDescription = 'If set, it will greet in uppercase letters';
 
-    protected function configure()
-    {
+    protected function configure() {
         $this
             ->setName($this->commandName)
             ->setDescription($this->commandDescription)
@@ -38,10 +37,9 @@ class deleteController extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $controller = $input->getArgument($this->commandArgumentName);
+    protected function execute(InputInterface $input, OutputInterface $output) {
 
+        $controller        = $input->getArgument($this->commandArgumentName);
         $delete_controller = false;
         $answer            = '';
 
@@ -70,15 +68,11 @@ class deleteController extends Command
         return 0;
     }
 
-
-
-    public function getControllerPath($controller)
-    {
+    public function getControllerPath($controller) {
         return "./".APP_CONF['app_path']."controllers/".$controller.".php";
     }
 
-    public function deleteController($file)
-    {
+    public function deleteController($file) {
        return unlink($file);
     }
 
